@@ -19,7 +19,6 @@ include _ROOT_PATH.'/app/security/check.php';
 
 <div style="width:90%; margin: 2em auto;">
 	<p>To jest inna chroniona strona aplikacji internetowej</p>
-    <img src="https://media.tenor.com/o656qFKDzeUAAAAC/rick-astley-never-gonna-give-you-up.gif" alt="RICKROLL" width="500" height="600">
 </div>	
 
 </body>
