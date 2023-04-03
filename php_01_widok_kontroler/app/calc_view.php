@@ -17,11 +17,11 @@
 	<fieldset>
 		<legend>Kalkulator</legend>
 			<label for="id_kwota">Podaj kwotę: </label>
-			<input id="id_kwota" type="text" name="kwota" value="<?php out($kwota) ?>" /><br />
+			<input id="id_kwota" type="text" name="kwota" placeholder="kwota" value="<?php out($kwota) ?>" /><br />
 			<label for="id_czas">Na ile lat: </label>
-			<input id="id_czas" type="text" name="czas" value="<?php out($czas) ?>" /><br />
+			<input id="id_czas" type="text" name="czas" placeholder="lata" value="<?php out($czas) ?>" /><br />
 			<label for="id_czas">Oprocentowanie: </label>
-			<input id="id_procent" type="text" name="procent" value="<?php out($procent) ?>" /><br />
+			<input id="id_procent" type="text" name="procent" placeholder="oprocentowanie" value="<?php out($procent) ?>" /><br />
 			<button type="submit" class="pure-button pure-button-primary">Oblicz</button>
 	</fieldset>
 </form>	
