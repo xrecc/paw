@@ -3,51 +3,54 @@
 <head>
 <meta charset="utf-8" />
 <title>Kalkulator kredytowy</title>
-<style> 
-body {
-	background-color: #cbf5f1;
-}
-label {
-	display: block;
-	margin: 10px;
-}
-input {
-	float: center;
-}
-button {
-	margin: 10px;
-	width: 100px;
-	height: 25px;
-	background-color: #dea2f2;
-}
-</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 </head>
 <body>
 
-<form action="<?php print(_APP_URL);?>/app/calc.php" method="get">
-	<label for="id_kwota">Podaj kwotę: </label>
-	<input id="id_kwota" type="text" name="kwota" value="<?php if (isset($kwota)) print($kwota); ?>" /><br />
-	<label for="id_czas">Na ile lat: </label>
-	<input id="id_czas" type="text" name="czas" value="<?php if (isset($czas)) print($czas); ?>" /><br />
-	<label for="id_czas">Oprocentowanie: </label>
-	<input id="id_procent" type="text" name="procent" value="<?php if (isset($procent)) print($procent); ?>" /><br />
-	<button type="submit">Oblicz</button>
+<div style="width:90%; margin: 2em auto;">
+	<a href="<?php print(_APP_ROOT); ?>/app/inna_chroniona.php" class="pure-button">kolejna chroniona strona</a>
+	<a href="<?php print(_APP_ROOT); ?>/app/security/logout.php" class="pure-button pure-button-active">Wyloguj</a>
+</div>
+
+<div style="width:90%; margin: 2em auto;">
+<form action="<?php print(_APP_ROOT);?>/app/calc.php" method="post" class="pure-form pure-form-stacked">
+	<fieldset>
+		<legend>Kalkulator</legend>
+			<label for="id_kwota">Podaj kwotę: </label>
+			<input id="id_kwota" type="text" name="kwota" value="<?php out($kwota) ?>" /><br />
+			<label for="id_czas">Na ile lat: </label>
+			<input id="id_czas" type="text" name="czas" value="<?php out($czas) ?>" /><br />
+			<label for="id_czas">Oprocentowanie: </label>
+			<input id="id_procent" type="text" name="procent" value="<?php out($procent) ?>" /><br />
+			<button type="submit" class="pure-button pure-button-primary">Oblicz</button>
+	</fieldset>
 </form>	
 
 <?php
 
 if (isset($messages)) {
-	echo '<ol style="margin: 20px; padding: 10px 10px 10px 30px; border-radius: 5px; background-color: #f88; width:300px;">';
-	foreach ( $messages as $msg ) {
-		echo '<li>'.$msg.'</li>';
+	if (count($messages)>0){
+		echo '<ol style="margin: 20px; padding: 10px 10px 10px 30px; border-radius: 5px; background-color: #f88; width:300px;">';
+		foreach ( $messages as $msg ) {
+			echo '<li>'.$msg.'</li>';
+		}
+		echo '</ol>';
 	}
-	echo '</ol>';
 }
 ?>
 <?php if (isset($result)){ ?>
-<div style="margin: 20px; padding: 10px; border-radius: 5px; background-color: #ff0; width:300px;">
-<?php echo 'Rata miesięczna wynosi: '.round($result,2).'zł'; ?>
-</div>
+	
+<form class="pure-form">
+	<label for="id_result">Twoja rata miesięczna wynosi: </label><br />
+    <input id="id_result" type="text" name="result" placeholder="<?php out($result) ?>" disabled="" /><br />
+	<br />
+	<label for="id_resultyear">Na rok wynosi: </label><br />
+    <input id="id_resultyear" type="text" name="resultyear" placeholder="<?php out($resultyear) ?>" disabled="" /><br />
+	<br />
+	<label for="id_resultend">Końcowy koszt pożyczki wynosi: </label><br />
+    <input id="id_resultend" type="text" name="resultend" placeholder="<?php out($resultend) ?>" disabled="" /><br />
+</form>
+
 <?php } ?>
 
 </body>
