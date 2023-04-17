@@ -1,28 +1,32 @@
 <?php
 require_once dirname(__FILE__).'/../config.php';
 
+require_once _ROOT_PATH.'/smarty/libs/Smarty.class.php';
 include _ROOT_PATH.'/app/security/check.php';
 
-function getParams(&$kwota,&$czas,&$procent){
-	$kwota = isset($_REQUEST['kwota']) ? $_REQUEST['kwota'] : null;
-	$czas = isset($_REQUEST['czas']) ? $_REQUEST['czas'] : null;
-	$procent = isset($_REQUEST['procent']) ? $_REQUEST['procent'] : null;
+function getParams(&$form){
+	$form['kwota'] = isset($_REQUEST['kwota']) ? $_REQUEST['kwota'] : null;
+	$form['czas'] = isset($_REQUEST['czas']) ? $_REQUEST['czas'] : null;
+	$form['procent'] = isset($_REQUEST['procent']) ? $_REQUEST['procent'] : null;
 }
 
-function validate(&$kwota,&$czas,&$procent,&$messages){
-	if ( ! (isset($kwota) && isset($czas) && isset($procent))) {
+function validate(&$form,&$messages){
+	if ( ! (isset($form['kwota']) && isset($form['czas']) && isset($form['procent']))) {
 		return false;
 	}
 
-	if ( $kwota == "") {
+
+	$infos [] = 'Przekazano parametry.';
+
+	if ( $form['kwota'] == "") {
 		$messages [] = 'Nie podano kwoty';
 	}
 
-	if ( $czas == "") {
+	if ( $form['czas'] == "") {
 		$messages [] = 'Nie podano na ile lat';
 	}
 
-	if ( $procent == "") {
+	if ( $form['procent'] == "") {
 		$messages [] = 'Nie podano oprocentowania';
 	}
 
@@ -30,48 +34,59 @@ function validate(&$kwota,&$czas,&$procent,&$messages){
 		return false;
 	} 
 		
-		if (! is_numeric( $kwota )) {
+		if (! is_numeric( $form['kwota'] )) {
 			$messages [] = 'Kwota nie jest liczbą całkowitą';
 		}
 		
-		if (! is_numeric( $czas )) {
+		if (! is_numeric( $form['czas'] )) {
 			$messages [] = 'Liczba lat nie jest liczbą całkowitą';
 		}
-		if (! is_numeric( $procent )) {
+		if (! is_numeric( $form['procent'] )) {
 			$messages [] = 'Procent nie jest liczbą całkowitą';
 		}	
 		if (count ($messages) !=0) return false;
 		else return true;
 }
 
-function process(&$kwota,&$czas,&$procent,&$messages,&$result,&$resultyear,&$resultend) { 
+function process(&$form,&$messages,&$result,&$role) { 
 	global $role;
-		$kwota = intval($kwota);
-		$czas = intval($czas);
-		$procent = floatval($procent);
+		$form['kwota'] = intval($form['kwota']);
+		$form['czas'] = intval($form['czas']);
+		$form['procent'] = floatval($form['procent']);
 	
-		$result = round((($kwota/($czas*12))*$procent),2);
+		$result['month'] = round((($form['kwota']/($form['czas']*12))+($form['kwota']/($form['czas']*12))*($form['procent']/100)),2);
 
 		if ($role == 'admin'){
-			$resultyear = $result*12;
+			$result['year'] = $result['month']*12;
 		}else {
-			$resultyear = 'tylko dla admina';
+			$result['year'] = 'tylko dla admina';
 		}
 		if ($role == 'admin'){
-			$resultend = $result*($czas*12);
+			$result['end'] = $result['month']*($form['czas']*12);
 		}else {
-			$resultend = 'tylko dla admina';
+			$result['end'] = 'tylko dla admina';
 		}
 }
 
-$x = null;
-$y = null;
-$operation = null;
+$form = null;
 $result = null;
 $messages = array();
 
-getParams($kwota,$czas,$procent);
-if (validate($kwota,$czas,$procent,$messages)){
-	process($kwota,$czas,$procent,$messages,$result,$resultyear,$resultend);
+getParams($form);
+if (validate($form,$messages)){
+	process($form,$messages,$result,$role);
 }
-include 'calc_view.php';
+$smarty = new Smarty();
+
+$smarty->assign('app_url',_APP_URL);
+$smarty->assign('root_path',_ROOT_PATH);
+$smarty->assign('page_title','Kalkulator kredytowy');
+$smarty->assign('page_description','Profesjonalne szablonowanie oparte na bibliotece Smarty');
+$smarty->assign('page_header','Szablony Smarty');
+
+$smarty->assign('role',$role);
+$smarty->assign('form',$form);
+$smarty->assign('result',$result);
+$smarty->assign('messages',$messages);
+
+$smarty->display(_ROOT_PATH.'/app/calc.html');

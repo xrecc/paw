@@ -1,0 +1,45 @@
+{extends file="../app/bloki.html"}
+
+{block name=header}{/block}
+{block name=footer}{/block}
+{block name=content}
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="actions stacked">
+							<li><a href="{$app_url}/app/calc.php" class="button primary fit">Powrót do kalkulatora</a></li>
+							<li><a href="{$app_url}/app/security/logout.php" class="button fit">Wyloguj</a></li>
+						</ul>
+						<a onclick="window.open('https://github.com/xrecc');return false;" href="#" class="icon brands alt fa-github"></a>
+					</nav>
+
+				<!-- Main -->
+					<div id="main" class="alt">
+
+						<!-- Tekst -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h1>Inna chroniona strona</h1>
+									</header>
+									<p>Jest to inna chroniona strona. </p>
+								</div>
+							</section>
+
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="{$app_url}/assets/js/jquery.min.js"></script>
+			<script src="{$app_url}/assets/js/jquery.scrolly.min.js"></script>
+			<script src="{$app_url}/assets/js/jquery.scrollex.min.js"></script>
+			<script src="{$app_url}/assets/js/browser.min.js"></script>
+			<script src="{$app_url}/assets/js/breakpoints.min.js"></script>
+			<script src="{$app_url}/assets/js/util.js"></script>
+			<script src="{$app_url}/assets/js/main.js"></script>
+{/block}
+
