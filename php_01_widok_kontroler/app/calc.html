@@ -5,102 +5,100 @@
 {block name=content}
 
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+<!-- Wrapper -->
+	<div id="wrapper">
 
-				<!-- Menu -->
-					<nav id="menu">
-						<ul class="actions stacked">
-							{if $role == 'admin'}
-							<li><a href="{$app_url}/app/inna_chroniona.php" class="button primary fit">Kolejna chroniona strona</a></li>
-							{/if}
-							<li><a href="{$app_url}/app/security/logout.php" class="button fit">Wyloguj</a></li>	
-						</ul>
-						<a onclick="window.open('https://github.com/xrecc');return false;" href="#" class="icon brands alt fa-github"></a>
-					</nav>
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="actions stacked">
+					{if $role == 'admin'}
+					<li><a href="{$conf->app_url}/app/inna_chroniona.php" class="button primary fit">Kolejna chroniona strona</a></li>
+					{/if}
+					<li><a href="{$conf->app_url}/app/security/logout.php" class="button fit">Wyloguj</a></li>	
+				</ul>
+				<a onclick="window.open('https://github.com/xrecc');return false;" href="#" class="icon brands alt fa-github"></a>
+			</nav>
 
-				<!-- Main -->
-					<div id="main" class="alt">
+		<!-- Main -->
+			<div id="main" class="alt">
 
-						<!-- Tekst -->
-							<section id="one">
-								<div class="inner">
-									<header class="major">
-										<h1>Kalkulator kredytowy</h1>
-									</header>
-									<span class="image main"><img src="{$app_url}/images/coins-gf67c0c9b2_1920.jpg" alt="" /></span>
-									<p>Jest to kalkulator wyliczający miesięczną ratę na podstawie kwoty kredytu, ilości lat i oprocentowania. Rola admina zyskuje jeszcze wgląd do kwoty rocznej i końcowej. </p>
-								</div>
-							</section>
-
-					</div>
-
-				<!-- Kalkulator -->
-					<section id="contact">
+				<!-- Tekst -->
+					<section id="one">
 						<div class="inner">
-							<section>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Podaj kwote</label>
-											<input id="id_kwota" type="text" name="kwota" autocomplete="off" placeholder="kwota" value="{$form['kwota']}" /><br />
-										</div>
-										<div class="field half">
-											<label for="email">Podaj ile lat</label>
-											<input id="id_czas" type="text" name="czas" autocomplete="off" placeholder="lata" value="{$form['czas']}" /><br />
-										</div>
-										<div class="field">
-											<label for="message">Podaj oprocentowanie</label>
-											<input id="id_procent" type="text" name="procent" autocomplete="off" placeholder="oprocentowanie" value="{$form['procent']}" /><br />
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Oblicz" class="primary" /></li>
-										<li><input type="reset" value="Wyczyść" /></li>
-									</ul>
-								</form>
-							</section>
+							<header class="major">
+								<h1>Kalkulator kredytowy</h1>
+							</header>
+							<span class="image main"><img src="{$conf->app_url}/lib/images/coins-gf67c0c9b2_1920.jpg" alt="" /></span>
+							<p>Jest to kalkulator wyliczający miesięczną ratę na podstawie kwoty kredytu, ilości lat i oprocentowania. Rola admina zyskuje jeszcze wgląd do kwoty rocznej i końcowej. </p>
+						</div>
+					</section>
 
-{if isset($messages)}
-	{if count($messages)>0}
+			</div>
+
+		<!-- Kalkulator -->
+			<section id="contact">
+				<div class="inner">
+					<section>
+						<form method="post" action="#">
+							<div class="fields">
+								<div class="field half">
+									<label for="name">Podaj kwote</label>
+									<input id="id_kwota" type="text" name="kwota" autocomplete="off" placeholder="kwota" value="{$form->kwota}" /><br />
+								</div>
+								<div class="field half">
+									<label for="email">Podaj ile lat</label>
+									<input id="id_czas" type="text" name="czas" autocomplete="off" placeholder="lata" value="{$form->czas}" /><br />
+								</div>
+								<div class="field">
+									<label for="message">Podaj oprocentowanie</label>
+									<input id="id_procent" type="text" name="procent" autocomplete="off" placeholder="oprocentowanie" value="{$form->procent}" /><br />
+								</div>
+							</div>
+							<ul class="actions">
+								<li><input type="submit" value="Oblicz" class="primary" /></li>
+								<li><input type="reset" value="Wyczyść" /></li>
+							</ul>
+						</form>
+					</section>
+
+	{if $msgs->isError()}
 		<div id="msgFound">
 			<ol style="margin: 20px; padding: 10px 10px 10px 30px; border-radius: 5px; background-color: #f88; width:300px;">
-				{foreach $messages as $msg}
+				{foreach $msgs->getErrors() as $err}
 					{strip}
-						<li>{$msg}</li>
+						<li>{$err}</li>
 					{/strip}
 				{/foreach}
 			</ol>
 		</div>
 	{/if}
-{/if}
 
-{if isset($result)} 
-							<section class="split">
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-envelope"></span>
-										<label for="id_result">Rata miesięczna</label>
-										<input id="id_result" type="text" name="result" placeholder="{$result['month']}" disabled /><br />
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-phone"></span>
-										<label for="id_resultyear">Kwota roczna</label>
-										<input id="id_resultyear" type="text" name="resultyear" placeholder="{$result['year']}" disabled /><br />
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-home"></span>
-										<label for="id_resultend">Kwota końcowa</label>
-										<input id="id_resultend" type="text" name="resultend" placeholder="{$result['end']}" disabled /><br />
-									</div>
-								</section>
-							</section>
-						</div>
-					</section>
+{if isset($res->month)} 
+	<section class="split">
+		<section>
+			<div class="contact-method">
+				<span class="icon solid alt fa-envelope"></span>
+				<label for="id_result">Rata miesięczna</label>
+				<input id="id_result" type="text" name="result" placeholder="{$res->month}" disabled /><br />
+			</div>
+		</section>
+		<section>
+			<div class="contact-method">
+				<span class="icon solid alt fa-phone"></span>
+				<label for="id_resultyear">Kwota roczna</label>
+				<input id="id_resultyear" type="text" name="resultyear" placeholder="{$res->year}" disabled /><br />
+			</div>
+		</section>
+		<section>
+			<div class="contact-method">
+				<span class="icon solid alt fa-home"></span>
+				<label for="id_resultend">Kwota końcowa</label>
+				<input id="id_resultend" type="text" name="resultend" placeholder="{$res->end}" disabled /><br />
+			</div>
+		</section>
+	</section>
+</div>
+</section>
 {/if}
 
 			</div>
@@ -108,13 +106,13 @@
 </div>
 </div>
 
-		<!-- Scripts -->
-			<script src="{$app_url}/assets/js/jquery.min.js"></script>
-			<script src="{$app_url}/assets/js/jquery.scrolly.min.js"></script>
-			<script src="{$app_url}/assets/js/jquery.scrollex.min.js"></script>
-			<script src="{$app_url}/assets/js/browser.min.js"></script>
-			<script src="{$app_url}/assets/js/breakpoints.min.js"></script>
-			<script src="{$app_url}/assets/js/util.js"></script>
-			<script src="{$app_url}/assets/js/main.js"></script>
+	<!-- Scripts -->
+		<script src="{$conf->app_url}/lib/assets/js/jquery.min.js"></script>
+		<script src="{$conf->app_url}/lib/assets/js/jquery.scrolly.min.js"></script>
+		<script src="{$conf->app_url}/lib/assets/js/jquery.scrollex.min.js"></script>
+		<script src="{$conf->app_url}/lib/assets/js/browser.min.js"></script>
+		<script src="{$conf->app_url}/lib/assets/js/breakpoints.min.js"></script>
+		<script src="{$conf->app_url}/lib/assets/js/util.js"></script>
+		<script src="{$conf->app_url}/lib/assets/js/main.js"></script>
 
 {/block}
