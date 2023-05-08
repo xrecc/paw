@@ -1,4 +1,4 @@
-{extends file="../app/bloki.html"}
+{extends file="bloki.html"}
 
 {block name=header}{/block}
 {block name=footer}{/block}
@@ -10,12 +10,12 @@
 
 		<!-- Menu -->
 			<nav id="menu">
-				<ul class="actions stacked">
+				<!-- <ul class="actions stacked">
 					{if $role == 'admin'}
-					<li><a href="{$conf->app_url}/app/inna_chroniona.php" class="button primary fit">Kolejna chroniona strona</a></li>
+					<li><a href="{$conf->app_url}/app/inna_chroniona.php" class="button primary fit" disabled>Kolejna chroniona strona</a></li>
 					{/if}
-					<li><a href="{$conf->app_url}/app/security/logout.php" class="button fit">Wyloguj</a></li>	
-				</ul>
+					<li><a href="{$conf->app_url}/app/security/logout.php" class="button fit" disabled>Wyloguj</a></li>	
+				</ul> -->
 				<a onclick="window.open('https://github.com/xrecc');return false;" href="#" class="icon brands alt fa-github"></a>
 			</nav>
 
@@ -39,7 +39,7 @@
 			<section id="contact">
 				<div class="inner">
 					<section>
-						<form method="post" action="#">
+						<form method="post" action="{$conf->action_root}calcCompute">
 							<div class="fields">
 								<div class="field half">
 									<label for="name">Podaj kwote</label>
@@ -72,7 +72,6 @@
 			</ol>
 		</div>
 	{/if}
-
 {if isset($res->month)} 
 	<section class="split">
 		<section>

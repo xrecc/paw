@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-04-24 18:23:34
-  from 'C:\xampp\htdocs\paw\php_01_widok_kontroler\app\calc.html' */
+/* Smarty version 4.3.1, created on 2023-05-08 20:02:42
+  from 'C:\xampp\htdocs\paw\php_01_widok_kontroler\app\views\calc.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6446ad06be0044_71380262',
+  'unifunc' => 'content_64593942757185_24330878',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '8ed4818a2d3e38d255dfd579c33506b1de33d14c' => 
+    '4522ba06548cfba694cfaed2a9cfac3b98e346db' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\paw\\php_01_widok_kontroler\\app\\calc.html',
-      1 => 1682352814,
+      0 => 'C:\\xampp\\htdocs\\paw\\php_01_widok_kontroler\\app\\views\\calc.html',
+      1 => 1683568713,
       2 => 'file',
     ),
   ),
@@ -20,31 +20,31 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6446ad06be0044_71380262 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64593942757185_24330878 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9210030866446ad06bd4b01_15469517', 'header');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_179569594364593942748540_31604922', 'header');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15526037196446ad06bd5279_92086790', 'footer');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1008225621645939427490c1_55309108', 'footer');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15225227996446ad06bd56b3_16127450', 'content');
-$_smarty_tpl->inheritance->endChild($_smarty_tpl, "../app/bloki.html");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_124382397264593942749526_16824198', 'content');
+$_smarty_tpl->inheritance->endChild($_smarty_tpl, "bloki.html");
 }
 /* {block 'header'} */
-class Block_9210030866446ad06bd4b01_15469517 extends Smarty_Internal_Block
+class Block_179569594364593942748540_31604922 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'header' => 
   array (
-    0 => 'Block_9210030866446ad06bd4b01_15469517',
+    0 => 'Block_179569594364593942748540_31604922',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -52,12 +52,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'header'} */
 /* {block 'footer'} */
-class Block_15526037196446ad06bd5279_92086790 extends Smarty_Internal_Block
+class Block_1008225621645939427490c1_55309108 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'footer' => 
   array (
-    0 => 'Block_15526037196446ad06bd5279_92086790',
+    0 => 'Block_1008225621645939427490c1_55309108',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -65,12 +65,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'footer'} */
 /* {block 'content'} */
-class Block_15225227996446ad06bd56b3_16127450 extends Smarty_Internal_Block
+class Block_124382397264593942749526_16824198 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_15225227996446ad06bd56b3_16127450',
+    0 => 'Block_124382397264593942749526_16824198',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -83,14 +83,14 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
 		<!-- Menu -->
 			<nav id="menu">
-				<ul class="actions stacked">
+				<!-- <ul class="actions stacked">
 					<?php if ($_smarty_tpl->tpl_vars['role']->value == 'admin') {?>
 					<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
-/app/inna_chroniona.php" class="button primary fit">Kolejna chroniona strona</a></li>
+/app/inna_chroniona.php" class="button primary fit" disabled>Kolejna chroniona strona</a></li>
 					<?php }?>
 					<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
-/app/security/logout.php" class="button fit">Wyloguj</a></li>	
-				</ul>
+/app/security/logout.php" class="button fit" disabled>Wyloguj</a></li>	
+				</ul> -->
 				<a onclick="window.open('https://github.com/xrecc');return false;" href="#" class="icon brands alt fa-github"></a>
 			</nav>
 
@@ -157,8 +157,23 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 			</ol>
 		</div>
 	<?php }?>
-
-<?php if ((isset($_smarty_tpl->tpl_vars['res']->value->month))) {?> 
+	<?php if ($_smarty_tpl->tpl_vars['msgs']->value->isInfo()) {?>
+			<h4>Informacje: </h4>
+			<ol class="inf">
+		<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['msgs']->value->getInfos(), 'inf');
+$_smarty_tpl->tpl_vars['inf']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['inf']->value) {
+$_smarty_tpl->tpl_vars['inf']->do_else = false;
+?>
+		<li><?php echo $_smarty_tpl->tpl_vars['inf']->value;?>
+</li>
+		<?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+		</ol>
+	<?php }
+if ((isset($_smarty_tpl->tpl_vars['res']->value->month))) {?> 
 	<section class="split">
 		<section>
 			<div class="contact-method">

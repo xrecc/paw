@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-04-24 18:23:47
-  from 'C:\xampp\htdocs\paw\php_01_widok_kontroler\app\calc.html' */
+/* Smarty version 4.3.1, created on 2023-05-08 20:32:00
+  from 'C:\xampp\htdocs\paw\php_01_widok_kontroler\app\views\calc.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_6446ad13534322_32498383',
+  'unifunc' => 'content_645940209727a3_45572580',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'd2cf27d850e92359fa7dc6bb8652c90f8790728a' => 
+    '1a7a98c1d04e85eee4ba39e7abae38eab629e870' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\paw\\php_01_widok_kontroler\\app\\calc.html',
-      1 => 1682352814,
+      0 => 'C:\\xampp\\htdocs\\paw\\php_01_widok_kontroler\\app\\views\\calc.html',
+      1 => 1683570618,
       2 => 'file',
     ),
   ),
@@ -20,31 +20,31 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6446ad13534322_32498383 (Smarty_Internal_Template $_smarty_tpl) {
+function content_645940209727a3_45572580 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11608233046446ad13528513_90892783', 'header');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_35437748864594020966460_06180692', 'header');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17771002136446ad13528c53_66602972', 'footer');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_81689497764594020966b18_44008167', 'footer');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21111845086446ad135290a4_94077274', 'content');
-$_smarty_tpl->inheritance->endChild($_smarty_tpl, "../app/bloki.html");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_55873412064594020966f15_56866104', 'content');
+$_smarty_tpl->inheritance->endChild($_smarty_tpl, "bloki.html");
 }
 /* {block 'header'} */
-class Block_11608233046446ad13528513_90892783 extends Smarty_Internal_Block
+class Block_35437748864594020966460_06180692 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'header' => 
   array (
-    0 => 'Block_11608233046446ad13528513_90892783',
+    0 => 'Block_35437748864594020966460_06180692',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -52,12 +52,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'header'} */
 /* {block 'footer'} */
-class Block_17771002136446ad13528c53_66602972 extends Smarty_Internal_Block
+class Block_81689497764594020966b18_44008167 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'footer' => 
   array (
-    0 => 'Block_17771002136446ad13528c53_66602972',
+    0 => 'Block_81689497764594020966b18_44008167',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -65,12 +65,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'footer'} */
 /* {block 'content'} */
-class Block_21111845086446ad135290a4_94077274 extends Smarty_Internal_Block
+class Block_55873412064594020966f15_56866104 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_21111845086446ad135290a4_94077274',
+    0 => 'Block_55873412064594020966f15_56866104',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -83,14 +83,14 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
 		<!-- Menu -->
 			<nav id="menu">
-				<ul class="actions stacked">
+				<!-- <ul class="actions stacked">
 					<?php if ($_smarty_tpl->tpl_vars['role']->value == 'admin') {?>
 					<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
-/app/inna_chroniona.php" class="button primary fit">Kolejna chroniona strona</a></li>
+/app/inna_chroniona.php" class="button primary fit" disabled>Kolejna chroniona strona</a></li>
 					<?php }?>
 					<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
-/app/security/logout.php" class="button fit">Wyloguj</a></li>	
-				</ul>
+/app/security/logout.php" class="button fit" disabled>Wyloguj</a></li>	
+				</ul> -->
 				<a onclick="window.open('https://github.com/xrecc');return false;" href="#" class="icon brands alt fa-github"></a>
 			</nav>
 
@@ -115,7 +115,8 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 			<section id="contact">
 				<div class="inner">
 					<section>
-						<form method="post" action="#">
+						<form method="post" action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+calcCompute">
 							<div class="fields">
 								<div class="field half">
 									<label for="name">Podaj kwote</label>
@@ -156,9 +157,8 @@ $_smarty_tpl->tpl_vars['err']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 			</ol>
 		</div>
-	<?php }?>
-
-<?php if ((isset($_smarty_tpl->tpl_vars['res']->value->month))) {?> 
+	<?php }
+if ((isset($_smarty_tpl->tpl_vars['res']->value->month))) {?> 
 	<section class="split">
 		<section>
 			<div class="contact-method">
