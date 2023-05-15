@@ -1,50 +1,51 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-05-08 20:32:00
+/* Smarty version 4.3.1, created on 2023-05-15 22:12:56
   from 'C:\xampp\htdocs\paw\php_01_widok_kontroler\app\views\calc.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_645940209727a3_45572580',
+  'unifunc' => 'content_64629248953939_67814570',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1a7a98c1d04e85eee4ba39e7abae38eab629e870' => 
     array (
       0 => 'C:\\xampp\\htdocs\\paw\\php_01_widok_kontroler\\app\\views\\calc.html',
-      1 => 1683570618,
+      1 => 1684181570,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:messages.html' => 1,
   ),
 ),false)) {
-function content_645940209727a3_45572580 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64629248953939_67814570 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_35437748864594020966460_06180692', 'header');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_19922317676462924884fb94_28414271', 'header');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_81689497764594020966b18_44008167', 'footer');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_118381922864629248850779_13187193', 'footer');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_55873412064594020966f15_56866104', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_140618840164629248850bb6_18058065', 'content');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "bloki.html");
 }
 /* {block 'header'} */
-class Block_35437748864594020966460_06180692 extends Smarty_Internal_Block
+class Block_19922317676462924884fb94_28414271 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'header' => 
   array (
-    0 => 'Block_35437748864594020966460_06180692',
+    0 => 'Block_19922317676462924884fb94_28414271',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -52,12 +53,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'header'} */
 /* {block 'footer'} */
-class Block_81689497764594020966b18_44008167 extends Smarty_Internal_Block
+class Block_118381922864629248850779_13187193 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'footer' => 
   array (
-    0 => 'Block_81689497764594020966b18_44008167',
+    0 => 'Block_118381922864629248850779_13187193',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -65,12 +66,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'footer'} */
 /* {block 'content'} */
-class Block_55873412064594020966f15_56866104 extends Smarty_Internal_Block
+class Block_140618840164629248850bb6_18058065 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_55873412064594020966f15_56866104',
+    0 => 'Block_140618840164629248850bb6_18058065',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -83,14 +84,24 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
 		<!-- Menu -->
 			<nav id="menu">
-				<!-- <ul class="actions stacked">
-					<?php if ($_smarty_tpl->tpl_vars['role']->value == 'admin') {?>
-					<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
-/app/inna_chroniona.php" class="button primary fit" disabled>Kolejna chroniona strona</a></li>
+				<ul class="actions stacked">
+					<span style="text-align: center;">Zalogowano jako:</span>
+					<?php if ((inRole('admin'))) {?>
+						<span style="float:right; color:red" >Użytkownik: <?php echo $_smarty_tpl->tpl_vars['user']->value->login;?>
+ (rola: <?php echo $_smarty_tpl->tpl_vars['user']->value->role;?>
+)</span>
+					<?php } else { ?>
+						<span style="float:right;" >Użytkownik: <?php echo $_smarty_tpl->tpl_vars['user']->value->login;?>
+ (rola: <?php echo $_smarty_tpl->tpl_vars['user']->value->role;?>
+)</span>
 					<?php }?>
-					<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
-/app/security/logout.php" class="button fit" disabled>Wyloguj</a></li>	
-				</ul> -->
+					<!-- <?php if ((inRole('admin'))) {?>
+					<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
+logout" class="button primary fit" disabled>Kolejna chroniona strona</a></li>
+					<?php }?> -->
+					<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
+logout" class="button fit" disabled>Wyloguj</a></li>	
+				</ul>
 				<a onclick="window.open('https://github.com/xrecc');return false;" href="#" class="icon brands alt fa-github"></a>
 			</nav>
 
@@ -115,7 +126,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 			<section id="contact">
 				<div class="inner">
 					<section>
-						<form method="post" action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+						<form method="post" action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
 calcCompute">
 							<div class="fields">
 								<div class="field half">
@@ -141,24 +152,10 @@ calcCompute">
 						</form>
 					</section>
 
-	<?php if ($_smarty_tpl->tpl_vars['msgs']->value->isError()) {?>
-		<div id="msgFound">
-			<ol style="margin: 20px; padding: 10px 10px 10px 30px; border-radius: 5px; background-color: #f88; width:300px;">
-				<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['msgs']->value->getErrors(), 'err');
-$_smarty_tpl->tpl_vars['err']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['err']->value) {
-$_smarty_tpl->tpl_vars['err']->do_else = false;
+					<?php $_smarty_tpl->_subTemplateRender('file:messages.html', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-					<li><?php echo $_smarty_tpl->tpl_vars['err']->value;?>
-</li>
-				<?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-			</ol>
-		</div>
-	<?php }
-if ((isset($_smarty_tpl->tpl_vars['res']->value->month))) {?> 
+
+<?php if ((isset($_smarty_tpl->tpl_vars['res']->value->month))) {?> 
 	<section class="split">
 		<section>
 			<div class="contact-method">

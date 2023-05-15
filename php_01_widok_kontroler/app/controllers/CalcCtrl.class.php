@@ -52,9 +52,8 @@ class CalcCtrl{
 			if (! (getMessages()->isEmpty())) return false;
 			else return true;
 	}
-	public function process() {
+	public function action_calcCompute(){
 		$this->getParams(); 
-		// global $role;
 		if($this->validate()){
 
 				$this->form->kwota = intval($this->form->kwota);
@@ -63,27 +62,31 @@ class CalcCtrl{
 			
 				$this->result->month= round((($this->form->kwota/($this->form->czas*12))+($this->form->kwota/($this->form->czas*12))*($this->form->procent/100)),2);
 		
-				// if ($role == 'admin'){
+				 if (inRole('admin')){
 					$this->result->year = $this->result->month*12;
-				// }else {
-					// $this->result->year = 'tylko dla admina';
-				// }
-				// if ($role == 'admin'){
+				 }else {
+					$this->result->year = 'tylko dla admina';
+				 }
+				 if (inRole('admin')){
 					$this->result->end = $this->result->month*($this->form->czas*12);
-				// }else {
-					// $this->result->end = 'tylko dla admina';
-				// }
+				 }else {
+					$this->result->end = 'tylko dla admina';
+				 }
 	}
 
 	$this->generateView();
 	}
+	public function action_calcShow(){
+		getMessages()->addInfo('Witaj w kalkulatorze');
+		$this->generateView();
+	}
 	public function generateView(){
 
+		getSmarty()->assign('user',unserialize($_SESSION['user']));
 		getSmarty()->assign('page_title','Kalkulator kredytowy');
 		getSmarty()->assign('page_description','obiektowość');
 		getSmarty()->assign('page_header','obiektowość');
 
-		// $smarty->assign('role',$role);
 		getSmarty()->assign('form',$this->form);
 		getSmarty()->assign('res',$this->result);
 

@@ -10,12 +10,18 @@
 
 		<!-- Menu -->
 			<nav id="menu">
-				<!-- <ul class="actions stacked">
-					{if $role == 'admin'}
-					<li><a href="{$conf->app_url}/app/inna_chroniona.php" class="button primary fit" disabled>Kolejna chroniona strona</a></li>
+				<ul class="actions stacked">
+					<span style="text-align: center;">Zalogowano jako:</span>
+					{if (inRole('admin'))}
+						<span style="float:right; color:red" >Użytkownik: {$user->login} (rola: {$user->role})</span>
+					{else}
+						<span style="float:right;" >Użytkownik: {$user->login} (rola: {$user->role})</span>
 					{/if}
-					<li><a href="{$conf->app_url}/app/security/logout.php" class="button fit" disabled>Wyloguj</a></li>	
-				</ul> -->
+					<!-- {if (inRole('admin'))}
+					<li><a href="{$conf->action_url}logout" class="button primary fit" disabled>Kolejna chroniona strona</a></li>
+					{/if} -->
+					<li><a href="{$conf->action_url}logout" class="button fit" disabled>Wyloguj</a></li>	
+				</ul>
 				<a onclick="window.open('https://github.com/xrecc');return false;" href="#" class="icon brands alt fa-github"></a>
 			</nav>
 
@@ -39,7 +45,7 @@
 			<section id="contact">
 				<div class="inner">
 					<section>
-						<form method="post" action="{$conf->action_root}calcCompute">
+						<form method="post" action="{$conf->action_url}calcCompute">
 							<div class="fields">
 								<div class="field half">
 									<label for="name">Podaj kwote</label>
@@ -61,17 +67,8 @@
 						</form>
 					</section>
 
-	{if $msgs->isError()}
-		<div id="msgFound">
-			<ol style="margin: 20px; padding: 10px 10px 10px 30px; border-radius: 5px; background-color: #f88; width:300px;">
-				{foreach $msgs->getErrors() as $err}
-					{strip}
-						<li>{$err}</li>
-					{/strip}
-				{/foreach}
-			</ol>
-		</div>
-	{/if}
+					{include file='messages.html'}
+
 {if isset($res->month)} 
 	<section class="split">
 		<section>
