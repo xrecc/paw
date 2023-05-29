@@ -1,0 +1,69 @@
+{extends file="bloki.html"} {block name=header}{/block} {block
+name=footer}{/block} {block name=content}
+
+<!-- Wrapper -->
+<div id="wrapper">
+  <!-- Menu -->
+  <nav id="menu">
+    <ul class="actions stacked">
+      <li>
+        <a
+          href="{$conf->action_url}calcShow"
+          class="button primary fit"
+          disabled
+          >Powrót do kalkulatora</a
+        >
+      </li>
+
+      <li>
+        <a href="{$conf->action_url}logout" class="button fit" disabled
+          >Wyloguj</a
+        >
+      </li>
+    </ul>
+    <a
+      onclick="window.open('https://github.com/xrecc');return false;"
+      href="#"
+      class="icon brands alt fa-github"
+    ></a>
+  </nav>
+  <section id="contact">
+    <div>
+      <section>
+        <table id="tab_result" class="pure-table pure-table-bordered">
+          <tr>
+            <th>Nazwa</th>
+            <th>Rata Miesięczna</th>
+            <th>Kwota Roczna</th>
+            <th>Kwota Końcowa</th>
+            <th>Opcje</th>
+          </tr>
+          {foreach $results as $r} {strip}
+          <tr>
+            <td>{$r["nick"]}</td>
+            <td>{$r["resultMonth"]}</td>
+            <td>{$r["resultYear"]}</td>
+            <td>{$r["resultEnd"]}</td>
+            <td>
+              <a
+                class="button-small pure-button button-warning"
+                href="{$conf->action_url}resultDelete&id={$r['idresult']}"
+                >Usuń</a
+              >
+            </td>
+          </tr>
+          {/strip} {/foreach}
+        </table>
+      </section>
+    </div>
+  </section>
+</div>
+<!-- Scripts -->
+<script src="{$conf->app_url}/lib/assets/js/jquery.min.js"></script>
+<script src="{$conf->app_url}/lib/assets/js/jquery.scrolly.min.js"></script>
+<script src="{$conf->app_url}/lib/assets/js/jquery.scrollex.min.js"></script>
+<script src="{$conf->app_url}/lib/assets/js/browser.min.js"></script>
+<script src="{$conf->app_url}/lib/assets/js/breakpoints.min.js"></script>
+<script src="{$conf->app_url}/lib/assets/js/util.js"></script>
+<script src="{$conf->app_url}/lib/assets/js/main.js"></script>
+{/block}

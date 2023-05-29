@@ -17,9 +17,9 @@
 					{else}
 						<span style="float:right;" >Użytkownik: {$user->login} (rola: {$user->role})</span>
 					{/if}
-					<!-- {if (inRole('admin'))}
-					<li><a href="{$conf->action_url}logout" class="button primary fit" disabled>Kolejna chroniona strona</a></li>
-					{/if} -->
+					{if (inRole('admin'))}
+					<li><a href="{$conf->action_url}resultList" class="button primary fit" disabled>Lista wyników</a></li>
+					{/if}
 					<li><a href="{$conf->action_url}logout" class="button fit" disabled>Wyloguj</a></li>	
 				</ul>
 				<a onclick="window.open('https://github.com/xrecc');return false;" href="#" class="icon brands alt fa-github"></a>
@@ -55,9 +55,13 @@
 									<label for="email">Podaj ile lat</label>
 									<input id="id_czas" type="text" name="czas" autocomplete="off" placeholder="lata" value="{$form->czas}" /><br />
 								</div>
-								<div class="field">
+								<div class="field half">
 									<label for="message">Podaj oprocentowanie</label>
 									<input id="id_procent" type="text" name="procent" autocomplete="off" placeholder="oprocentowanie" value="{$form->procent}" /><br />
+								</div>
+								<div class="field half">
+									<label for="message">Podaj nick</label>
+									<input id="id_nick" type="text" name="nick" autocomplete="off" placeholder="nickname" value="{$form->nick}" /><br />
 								</div>
 							</div>
 							<ul class="actions">
@@ -71,25 +75,32 @@
 
 {if isset($res->month)} 
 	<section class="split">
+			<section>
+				<div class="contact-method">
+					<span class="icon solid alt fa-envelope"></span>
+					<label for="id_result">Nick</label>
+					<input id="id_result" type="text" name="nick" placeholder="{$form->nick}" disabled /><br />
+				</div>
+			</section>
 		<section>
 			<div class="contact-method">
 				<span class="icon solid alt fa-envelope"></span>
 				<label for="id_result">Rata miesięczna</label>
-				<input id="id_result" type="text" name="result" placeholder="{$res->month}" disabled /><br />
+				<input id="id_result" type="text" name="month" placeholder="{$res->month}" disabled /><br />
 			</div>
 		</section>
 		<section>
 			<div class="contact-method">
 				<span class="icon solid alt fa-phone"></span>
 				<label for="id_resultyear">Kwota roczna</label>
-				<input id="id_resultyear" type="text" name="resultyear" placeholder="{$res->year}" disabled /><br />
+				<input id="id_resultyear" type="text" name="tyear" placeholder="{$res->year}" disabled /><br />
 			</div>
 		</section>
 		<section>
 			<div class="contact-method">
 				<span class="icon solid alt fa-home"></span>
 				<label for="id_resultend">Kwota końcowa</label>
-				<input id="id_resultend" type="text" name="resultend" placeholder="{$res->end}" disabled /><br />
+				<input id="id_resultend" type="text" name="end" placeholder="{$res->end}" disabled /><br />
 			</div>
 		</section>
 	</section>

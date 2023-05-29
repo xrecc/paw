@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\forms\CalcForm;
 use app\transfer\CalcResult;
+use PDOException;
 
 class CalcCtrl{
 
@@ -17,9 +18,10 @@ class CalcCtrl{
 		$this->form->kwota = getFromRequest('kwota');
 		$this->form->czas = getFromRequest('czas');
 		$this->form->procent = getFromRequest('procent');
+		$this->form->nick = getFromRequest('nick');
 	}
 	public function validate(){
-		if ( ! (isset($this->form->kwota) && isset($this->form->czas) && isset($this->form->procent))) {
+		if ( ! (isset($this->form->kwota) && isset($this->form->czas) && isset($this->form->procent) && isset($this->form->nick))) {
 			return false;
 		}
 	
@@ -33,6 +35,9 @@ class CalcCtrl{
 	
 		if ( $this->form->procent == "") {
 			getMessages()->addError('Nie podano oprocentowania');
+		}
+		if ( $this->form->nick == "") {
+			getMessages()->addError('Nie podano nazwy');
 		}
 	
 		if (! (getMessages()->isEmpty())){
@@ -48,7 +53,11 @@ class CalcCtrl{
 			}
 			if (! is_numeric( $this->form->procent)) {
 				getMessages()->addError('Procent nie jest liczbą całkowitą');
-			}	
+			}
+			if (is_numeric( $this->form->nick)) {
+				getMessages()->addError('Nick nie może mieć samych liczb');
+			}
+	
 			if (! (getMessages()->isEmpty())) return false;
 			else return true;
 	}
@@ -72,9 +81,56 @@ class CalcCtrl{
 				 }else {
 					$this->result->end = 'tylko dla admina';
 				 }
+				 $this->action_resultSave();
 	}
 
 	$this->generateView();
+	}
+	public function action_resultSave(){
+			
+		if ($this->validate()) {
+			try {
+				getDB()->insert("results", [
+					"nick" => $this->form->nick,
+					"resultMonth" => $this->result->month,
+					"resultYear" => $this->result->year,
+                    "resultEnd" => $this->result->end
+				]);
+					
+
+			} catch (PDOException $e){
+				getMessages()->addError('Wystąpił nieoczekiwany błąd podczas zapisu rekordu');
+				if (getConf()->debug) getMessages()->addError($e->getMessage());			
+			}
+			
+			forwardTo('calcShow');
+
+		} else {
+			$this->generateView();
+		}		
+	}
+	public function validateEdit() {
+
+		$this->form->id = getFromRequest('id',true,'Błędne wywołanie aplikacji');
+		return ! getMessages()->isError();
+	}
+	public function action_resultDelete(){		
+		if ( $this->validateEdit() ){
+			
+			try{
+				getDB()->delete("results", [
+					"idresult" => $this->form->id
+				]);
+				getMessages()->addInfo('Pomyślnie usunięto rekord');
+			} catch (PDOException $e){
+				getMessages()->addError('Wystąpił błąd podczas usuwania rekordu');
+				if (getConf()->debug) getMessages()->addError($e->getMessage());			
+			}	
+			forwardTo('resultList');
+		} else {
+			$this->generateView();
+		}
+				
 	}
 	public function action_calcShow(){
 		getMessages()->addInfo('Witaj w kalkulatorze');
@@ -92,5 +148,6 @@ class CalcCtrl{
 
 		getSmarty()->display('calc.html');
 	}
+
 }
 

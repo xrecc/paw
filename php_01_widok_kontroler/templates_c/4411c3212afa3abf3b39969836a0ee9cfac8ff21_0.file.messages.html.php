@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.1, created on 2023-05-15 18:46:31
+/* Smarty version 4.3.1, created on 2023-05-22 19:38:05
   from 'C:\xampp\htdocs\paw\php_01_widok_kontroler\app\views\templates\messages.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.1',
-  'unifunc' => 'content_646261e7938232_26534967',
+  'unifunc' => 'content_646ba87db50021_87574379',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4411c3212afa3abf3b39969836a0ee9cfac8ff21' => 
     array (
       0 => 'C:\\xampp\\htdocs\\paw\\php_01_widok_kontroler\\app\\views\\templates\\messages.html',
-      1 => 1684168623,
+      1 => 1684181742,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_646261e7938232_26534967 (Smarty_Internal_Template $_smarty_tpl) {
+function content_646ba87db50021_87574379 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['msgs']->value->isError()) {?>
-<div class="messages error">
+<div class="error">
 	<ol>
 	<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['msgs']->value->getErrors(), 'err');
@@ -39,7 +39,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </div>
 <?php }
 if ($_smarty_tpl->tpl_vars['msgs']->value->isInfo()) {?>
-<div class="messages info bottom-margin">
+<div class="info">
 	<ol>
 	<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['msgs']->value->getInfos(), 'inf');
